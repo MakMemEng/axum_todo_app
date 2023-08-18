@@ -1,0 +1,25 @@
+[package]
+name = "axum_todo_app"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+axum = "0.4.8"
+# http requestを扱う
+hyper = { version = "0.14.16", features = ["full"] }
+tokio = { version = "1.16.1", features = ["full"] }
+# server構築周りを扱う
+tower = "0.4.11"
+# http headerのMIME定義
+mime = "0.3.16"
+# parse系
+serde = { version = "1.0.136", features = ["derive"] }
+serde_json = "1.0.78"
+# logging, debug系
+tracing = "0.1.30"
+tracing-subscriber = { version = "0.3.8", features = ["env-filter"] }
+# Resultを扱いやすくするUtility
+anyhow = "1.0.56"
+thiserror = "1.0.30"
