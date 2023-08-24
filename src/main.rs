@@ -15,10 +15,7 @@ async fn main() {
     env::set_var("RUST_LOG", log_level);
     tracing_subscriber::fmt::init();
 
-    let app = Router::new()
-        .route("/", get(root))
-        .route("/users", post(create_user));
-
+    let app = create_app();
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     tracing::debug!("listening on {}", addr);
 
@@ -28,8 +25,14 @@ async fn main() {
         .unwrap();
 }
 
+fn create_app() -> Router {
+    Router::new()
+        .route("/", get(root))
+        .route("/users", post(create_user))
+}
+
 async fn root() -> &'static str {
-    "Hello, world!"
+    "Hello, World!"
 }
 
 async fn create_user(Json(payload): Json<CreateUser>) -> impl IntoResponse {
