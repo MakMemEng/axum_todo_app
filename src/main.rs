@@ -44,12 +44,12 @@ async fn create_user(Json(payload): Json<CreateUser>) -> impl IntoResponse {
     (StatusCode::CREATED, Json(user))
 }
 
-#[derive(Deserialize)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 struct CreateUser {
     username: String,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 struct User {
     id: u64,
     username: String,
